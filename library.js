@@ -1,10 +1,10 @@
-const serverUrl = "https://ofpinptronvn.usemoralis.com:2053/server";
-const appId = "pWdm4Ivq5d8YfPLv6nXYTBa976fo8lZowDQlrJAy";
+const serverUrl = "https://tlm7luqyy4k3.usemoralis.com:2053/server";
+const appId = "kSv42gBDNoTpmmzDkKDrv5OIVA5eiWxwCId1vz8m";
 Moralis.start({ serverUrl, appId });
 
 async function getObj(){
     console.log("getObj");
-    const options_rop = { chain: 'eth', address: localStorage.metamaskAccount};
+    const options_rop = { chain: 'ropsten', address: localStorage.metamaskAccount};
     const ropNFTs = await Moralis.Web3API.account.getNFTs(options_rop);
     console.log("ropNFTs");
     return ropNFTs
@@ -17,36 +17,41 @@ async function addSong(nft) {
     }
     let ipfs = nft.token_uri;
     obj = await (await fetch(ipfs)).json();
+    
     console.log(obj);
     var ul = document.querySelector(".songlist");
     var li = document.createElement("li");
+    var audio = document.createElement("audio");
+    var image = document.createElement("img");
+    var name = document.createElement("span");
 
     if (obj.audio) { 
         let audioLink = obj.audio;
-        // let audio = audioLink.replace('https://gateway.pinata.cloud/ipfs/', 'ipfs://').replace('?preview=1', '');
-        li.src = audioLink;
-        console.log(li.src);
+        audio.src = audioLink;
+        li.appendChild(audio);
     }
     else if (obj.animation_url) { 
         let audioLink = obj.animation_url;
-        // let audio = audioLink.replace('https://gateway.pinata.cloud/ipfs/', 'ipfs://').replace('?preview=1', '');
-        li.src = audioLink;
-        console.log(li.src);
+        audio.src = audioLink;
+        li.appendChild(audio);
+    
     } else { 
         return;
     }
 
+
     let imageLink = obj.image;
-    console.log(imageLink);
-    var image = document.createElement("iframe");
     image.src = imageLink;
     li.appendChild(image);
 
-    var name = document.createElement("span");
     name.innerHTML = obj.name;
     li.appendChild(name);
+    li.setAttribute("data-name", obj.name);
+
+    console.log(li);
     
     ul.appendChild(li);
+    console.log(ul);
 }
 
 async function fetchNFTs(){

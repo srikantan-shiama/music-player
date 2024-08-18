@@ -1,48 +1,79 @@
 .topnav {
-    background-color: #F3F6F8;
-    overflow: hidden;
+   background-color: #F3F6F8;
+   overflow: hidden;
+   padding-bottom: 15px;
   }
  
- .topnav .home {
-    float: left;
-    color: black;
-    text-align: center;
-    font-size: 30px;
-    margin: 3% 0% 0% 5%;
-    text-decoration: none;
- }
+.topnav .home {
+   float: left;
+   color: black;
+   text-align: center;
+   font-size: 32px;
+   margin-top: 15px;
+   margin-left: 30px;
+   text-decoration: none;
+   font-weight: bold;
+   padding:0;
+}
  
- .topnav .sub-page {
-    float: left;
-    text-align: center;
-    margin: 3.5% 0% 0% 8%;
-    font-size: 17px;
-    color: black;
-    text-decoration: none;
- }
+.browse {
+   float: right;
+   text-align: center;
+   margin-top: 30px;
+   margin-right: 3%;
+   font-size: 16px;
+   color: black;
+   text-decoration: none;
+   padding:0;
+}
+
+.submit {
+   float: right;
+   text-align: center;
+   margin-top: 30px;
+   margin-right: 3%;
+   font-size: 16px;
+   color: black;
+   text-decoration: none;
+   padding:0;
+}
  
  .topnav button {
-    float: right;
-    border: none;
-    color: black;
-    margin: 2% 1% 1% 1%; 
-    padding: 1% 1% 1% 1%;
-    background-color: #F6851B;
-    text-align: center;
-    font-size: 17px;
-    text-decoration: none;
-    border-radius: 10px;
-    cursor: pointer;
+   float: right;
+   border: none;
+   color: black;
+   padding: 15px;
+   margin-top: 15px;
+   margin-left: 15px;
+   margin-right: 15px;
+   background-color: #F6851B;
+   text-align: center;
+   font-size: 16px;
+   text-decoration: none;
+   border-radius: 10px;
+   cursor: pointer;
  }
 
  .topnav button:hover { 
-    opacity: 90%;
+   opacity: 90%;
  }
  
- .topnav p {
-    float: right;
-    color: black;
-    text-align: center;
-    padding: 3% 0% 1% 1%;
-    font-size: 17px;
- }
+.topnav p {
+   font-family: 'Lekton', sans-serif;
+   float: right;
+   color: black;
+   text-align: center;
+   margin-top: 33px;
+   font-size: 16px;
+}
+
+@media screen and (max-width: 600px) {
+   .topnav button { 
+      display: none;
+   }
+
+   .topnav p { 
+      display: none;
+   }
+
+}

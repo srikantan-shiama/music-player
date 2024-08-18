@@ -4,26 +4,97 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music Player</title>
-    <link rel="stylesheet" href="style.css">
+    <meta property="og:image" content="site_image.jpg">
+    <title>Fonos Music Player</title>
+    <link rel="icon"   href="./media/favicon.jpg">
     <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="browse.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lekton">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
+    <noscript>This website requires scripts!</noscript>
     <div class="topnav">
-        <a class="home" href="./index.html">FONOGRAPHY</a>
-        <a class="sub-page" href="./mint.html">Mint</a>
-        <a class="sub-page" href="./browse.html">Browse</a>
+        <a class="home" href="./index.html">fonos</a>
         <button id='loginButton'> MetaMask </button>
         <p id='userWallet'> </p>
+        <a class="submit" href="./submit.html">Submit</a>
+        <a class="browse" href="./browse.html">Browse</a>
     </div>
-    <div class="browse-container">
-        <p>Under Construction</p>
+    <div class="modal">
+        <div class="modal-content">
+            <p class="close-btn">&times;</p>
+            <div class="columns">
+                <div class="column">
+                    <div class="play-container">
+                        <img class="modal-image" src="songs/aaona.jpg">
+                        <button class="preview" onclick="playPreview()">
+                            <i class="fa fa-play fa-3x prev-play"></i>
+                        <audio class="modal-audio"></audio>
+                    </div>
+                </div>
+                <div class="column">
+                    <button class="modal-mint" onclick="mint()">Mint</button><p class="modal-price">0.01 <b>Ξ</b></p><br>
+                    <p class="modal-title">one</p>
+                    <p class='modal-artist'>Shevya</p>
+                    <p class='modal-description'>description</p>
+                </div>
+            </div>
+        </div>
+      </div>
+    <div class="parent">
+        <div class="grid">
+            <div class = "nft">
+                <!-- <button class="mint">Mint</button> -->
+                <p class="price">0.01 <b>Ξ</b></p>
+                <img class = "image" src="songs/aaona.jpg"><br>
+                <audio class = "song" src='songs/AaoNa.mp3'></audio>
+                <p class="title">Aao Na</p>
+                <p class='artist'>Shevya</p>
+                <p class='description'>Shevya is a pop desi-fusion singer/songwriter. Aao Na is her debut single! </p>
+            </div>
+            <div class = "nft">
+                <!-- <button class="mint">Mint</button> -->
+                <p class="price">0.01 <b>Ξ</b></p>
+                <img class = "image" src="songs/nasha.jpeg"><br>
+                <audio class = "song" src='songs/Nasha.mp3'></audio>
+                <p class="title">Nasha</p>
+                <p class='artist'>Shevya</p>
+                <p class='description'>Shevya is a pop desi-fusion singer/songwriter. Nasha, her second single, describes beign intoxicated with love.</p>
+            </div>
+            <div class = "nft">
+                <!-- <button class="mint">Mint</button> -->
+                <p class="price">0.05 <b>Ξ</b></p>
+                <img class = "image" src="songs/kadhaloli.jpg"><br>
+                <audio class = "song" src='songs/KadhalOli.mp3'></audio>
+                <p class="title">Kadhal Oli</p>
+                <p class='artist'>Shankara</p>
+                <p class='description'>Kadhal Oli is a Tamil Pop-Rock ballad about the clarity provided by a new relationship. </p>
+            </div>
+            <div class = "nft">
+                <!-- <button class="mint">Mint</button> -->
+                <p class="price">0.05 <b>Ξ</b></p>
+                <img class = "image" src="songs/comemyway.jpeg"><br>
+                <audio class = "song" src='songs/NoSe.wav'></audio>
+                <p class="title">Come My Way</p>
+                <p class='artist'>Schwei ft. Shankara</p>
+                <p class='description'>description</p>
+            </div>
+            <!-- <div class = "nft">
+                <button class="mint">Mint</button><p class="price">0.05 <b>Ξ</b></p>
+                <img class = "image" src="songs/nose.jpeg"><br>
+                <audio class = "song" src='songs/NoSe.wav'></audio>
+                <p class="title">three</p>
+                <p class='artist'>Michael Ventura</p>
+                <p class='description'>description</p>
+            </div> -->
+        </div>
     </div>
     <script src="https://kit.fontawesome.com/1fe31c3bca.js" crossorigin="anonymous"></script>
     <script src="meta.js"> </script>
     <script src="main.js"> </script>
+    <script src="browse.js"> </script>
 </body>
 
