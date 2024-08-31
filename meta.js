@@ -1,62 +1,49 @@
-const loginButton = document.getElementById('loginButton')
-const userWallet = document.getElementById('userWallet')
+const loginButton = document.getElementById('loginButton');
+const userWallet = document.getElementById('userWallet');
 
 function toggleButton() {
-
     if (!window.ethereum) {
         loginButton.innerText = "Metamask not installed";
         loginButton.classList.remove("bg-purple-500", "text-white");
         loginButton.classList.add("bg-gray-500", "text-gray-300", "cursor-not-allowed");
-        return false;
-    }  
-
-    if (!localStorage.getItem('metamaskAccount')) {
-        loginButton.innerText = "Login with Metamask";
-        loginButton.addEventListener('click', () => {loginWithMetamask()})
+        return;
     }
 
-    else { 
+    const account = localStorage.getItem('metamaskAccount');
+    if (!account) {
+        loginButton.innerText = "Login with Metamask";
+        loginButton.onclick = loginWithMetamask;
+    } else {
         loginButton.innerText = "Disconnect";
         userWallet.innerText = localStorage.getItem('accountAbrev');
-        loginButton.addEventListener('click', signOutofMetamask);
+        loginButton.onclick = signOutofMetamask;
     }
 }
 
 async function loginWithMetamask() {
-    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
-    .catch((e) => {
-        console.error(e.message)
-        return
-    })
-    if (!accounts) { return }
-    localStorage.setItem('metamaskAccount', accounts[0]);
-    const account = localStorage.getItem('metamaskAccount');
-    userWallet.innerText = account.slice(0, 4) + '...' + account.slice(-2);
+    try {
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        if (accounts.length === 0) return;
 
-    localStorage.setItem('accountAbrev', userWallet.innerText);
+        const account = accounts[0];
+        localStorage.setItem('metamaskAccount', account);
+        const accountAbrev = account.slice(0, 4) + '...' + account.slice(-2);
+        localStorage.setItem('accountAbrev', accountAbrev);
+        userWallet.innerText = accountAbrev;
 
-    loginButton.innerText = "Disconnect";
-    loginButton.removeEventListener('click', loginWithMetamask)
-    setTimeout(() => {
-        loginButton.addEventListener('click', signOutofMetamask)
-    }, 200)
+        loginButton.innerText = "Disconnect";
+        loginButton.onclick = signOutofMetamask;
+    } catch (e) {
+        console.error(e.message);
+    }
 }
 
 function signOutofMetamask() {
     localStorage.removeItem('metamaskAccount');
     localStorage.removeItem('accountAbrev');
-    window.userWalletAddress = null;
     userWallet.innerText = '';
     loginButton.innerText = 'Login with MetaMask';
-
-    loginButton.removeEventListener('click', signOutofMetamask);
-    setTimeout(() => {
-        loginButton.addEventListener('click', loginWithMetamask)
-    }, 200)
-
+    loginButton.onclick = loginWithMetamask;
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-    toggleButton();
-});
-
+window.addEventListener('DOMContentLoaded', toggleButton);
